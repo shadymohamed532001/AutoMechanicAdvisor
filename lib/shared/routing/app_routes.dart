@@ -1,9 +1,20 @@
+import 'package:auto_mechanic_advisor/feature/onbording/logic/cubit/onbording_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/onbording/presentation/on_boarding_view.dart';
+import 'package:auto_mechanic_advisor/shared/routing/routes.dart';
 import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case Routes.initialRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => OnboardingCubit(),
+            child: const OnBordingView(),
+          ),
+        );
       // case Routes.initialRoute:
       //   if (onBording != null) {
       //     if (usertoken != null) {
