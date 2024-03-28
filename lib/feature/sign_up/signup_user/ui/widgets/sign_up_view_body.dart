@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
 import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
@@ -11,9 +14,6 @@ import 'package:auto_mechanic_advisor/core/widgets/shows_toust_color.dart';
 import 'package:auto_mechanic_advisor/feature/login/models/user_model.dart';
 import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/widgets/sign_up_form.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -105,9 +105,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     bottomtext: 'Sign Up',
                     textBottomStyle: AppStyle.font16Whitesemibold,
                     onPressed: () {
-                      if (signUpCubite.formKey.currentState!.validate() ==
-                          true) {
-                        signUp(context);
+                      if (signUpCubite.formKey.currentState!.validate()) {
+                        if (SignUpForm.selectedRole == 'User') {
+                          signUpUser(context);
+                        } else if (SignUpForm.selectedRole == 'Mechanic') {
+                          userSignUpMechanic(context);
+                        }
                       } else {
                         signUpCubite.autovalidateMode = AutovalidateMode.always;
                         setState(() {});
@@ -144,11 +147,21 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     );
   }
 
-  void signUp(BuildContext context) {
-    BlocProvider.of<SignUpCubit>(context).userSignUp(
+  void signUpUser(BuildContext context) {
+    BlocProvider.of<SignUpCubit>(context).userSignUpUser(
       email: context.read<SignUpCubit>().emailController.text,
       password: context.read<SignUpCubit>().passwordController.text,
-      city: context.read<SignUpCubit>().cityController.text,
+      city: context.read<SignUpCubit>().addressController.text,
+      fullName: context.read<SignUpCubit>().nameController.text,
+      phoneNumber: context.read<SignUpCubit>().passwordController.text,
+    );
+  }
+
+  void userSignUpMechanic(BuildContext context) {
+    BlocProvider.of<SignUpCubit>(context).userSignUpMechanic(
+      email: context.read<SignUpCubit>().emailController.text,
+      password: context.read<SignUpCubit>().passwordController.text,
+      address: context.read<SignUpCubit>().addressController.text,
       fullName: context.read<SignUpCubit>().nameController.text,
       phoneNumber: context.read<SignUpCubit>().passwordController.text,
     );

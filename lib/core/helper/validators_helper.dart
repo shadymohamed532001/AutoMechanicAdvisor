@@ -30,12 +30,12 @@ class MyValidatorsHelper {
     return null;
   }
 
-  static String? cityValidator(String? value) {
+  static String? addressValidator(String? value) {
     if (value!.isEmpty) {
-      return 'Please enter a City name';
+      return 'Please enter a Address name';
     }
     if (value.length < 3) {
-      return 'City must be at least 3 characters long';
+      return 'Address must be at least 3 characters long';
     }
     return null;
   }

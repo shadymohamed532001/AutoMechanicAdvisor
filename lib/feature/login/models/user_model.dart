@@ -30,13 +30,13 @@ class UserModel {
 
 // Class representing additional data associated with a user
 class Data {
-  int? id; // User ID
   String? city; // User's city
   String? email; // User's email
   String? fullName; // User's full name
   String? phoneNumber; // User's phone number
   String? token; // User's authentication token
   String? profilePic; // URL to user's profile picture
+  String? userType; // URL to user's profile picture
 
   // Constructor for Data class with optional parameters
   Data({
@@ -45,7 +45,7 @@ class Data {
     this.fullName,
     this.phoneNumber,
     this.token,
-    this.id,
+    this.userType,
     this.profilePic,
   });
 
@@ -57,7 +57,7 @@ class Data {
     data['fullName'] = fullName; // Add full name to JSON
     data['phoneNumber'] = phoneNumber; // Add phone number to JSON
     data['token'] = token; // Add token to JSON
-    data['id'] = id; // Add ID to JSON
+    data['userType'] = userType; // Add ID to JSON
     data['profilePic'] = profilePic; // Add profile picture URL to JSON
 
     return data;
@@ -70,6 +70,6 @@ class Data {
     fullName = json['fullName']; // Get full name from JSON
     phoneNumber = json['phoneNumber']; // Get phone number from JSON
     token = json['token']; // Get token from JSON
-    id = json['id']; // Get ID from JSON
+    userType = json['userType']; // Get ID from JSON
   }
 }

@@ -18,7 +18,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
 
   // Method to handle user sign-up
-  void userSignUp({
+  void userSignUpUser({
     required String email,
     required String password,
     required String fullName,
@@ -36,6 +36,54 @@ class SignUpCubit extends Cubit<SignUpState> {
         'fullName': fullName,
         'phoneNumber': phoneNumber,
         'city': city,
+      });
+
+      // Send post request to sign-up endpoint
+      var response = await ApiServices.postFormData(
+        endpoint: registerendPoint,
+        formData: formData,
+      );
+
+      // Parse the response into a UserModel object
+      final UserModel user = UserModel.fromJson(response);
+
+      // Emit a success state with the UserModel object
+      emit(SignUpSuccess(registerModel: user));
+    } catch (e) {
+      // Handle errors that occur during sign-up process
+      if (e is DioException) {
+        emit(SignUpError(
+          // Emit an error state with the error message
+          errorMessage: ServerFailure.fromDioException(e).errMessage.toString(),
+        ));
+      } else {
+        emit(SignUpError(
+          // Emit an error state with the error message
+          errorMessage: ServerFailure(e.toString()).errMessage.toString(),
+        ));
+      }
+    }
+  }
+
+  void userSignUpMechanic({
+    required String email,
+    required String password,
+    required String fullName,
+    required String address,
+    required String phoneNumber,
+  }) async {
+    emit(
+        SignUpLoading()); // Emit a loading state while sign-up process is ongoing
+
+    try {
+      // Create form data for API request
+      FormData formData = FormData.fromMap({
+        'email': email,
+        'password': password,
+        'fullName': fullName,
+        'phoneNumber': phoneNumber,
+        'city': address,
+        'userType': 'mechanic'
       });
 
       // Send post request to sign-up endpoint
@@ -84,5 +132,5 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController phoneController = TextEditingController();
 
   // Controller for the city input field
-  TextEditingController cityController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
 }

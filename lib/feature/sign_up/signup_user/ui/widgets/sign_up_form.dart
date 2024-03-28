@@ -1,10 +1,10 @@
-import 'package:auto_mechanic_advisor/core/helper/validators_helper.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
-import 'package:auto_mechanic_advisor/core/widgets/app_text_formfield.dart';
 import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/widgets/custom_dropdown_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_mechanic_advisor/core/widgets/app_text_formfield.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/helper/validators_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -12,10 +12,14 @@ class SignUpForm extends StatefulWidget {
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
+
+  static String get selectedRole =>
+      _SignUpFormState.selectedRole; // Getter to access selectedRole
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  bool ispassword = true;
+  bool isPassword = true;
+  static String selectedRole = 'User'; // Default value
 
   @override
   Widget build(BuildContext context) {
@@ -26,34 +30,39 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'name',
-            style: AppStyle.font16blacksemibold,
-          ),
           SizedBox(
-            height: 5.h,
+            height: 50.h,
           ),
-          CustomTextFormFiled(
+          CustomDropdownButton<String>(
+            value: selectedRole,
+            onChanged: (newValue) {
+              setState(() {
+                selectedRole = newValue!;
+              });
+            },
+            items: ['User', 'Mechanic'].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            icon: Icons.arrow_drop_down,
+            iconSize: 30,
+            dropdownColor: ColorManager.darkGreyColor,
+          ),
+          SizedBox(height: 20.h),
+          CustomTextFormField(
             fillColor: ColorManager.darkGreyColor,
             obscureText: false,
             hintText: 'Full Name',
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.name,
             controller: signUpCubit.nameController,
             validator: (text) {
               return MyValidatorsHelper.displayNamevalidator(text);
             },
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'Email address',
-            style: AppStyle.font16blacksemibold,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          CustomTextFormFiled(
+          SizedBox(height: 20.h),
+          CustomTextFormField(
             fillColor: ColorManager.darkGreyColor,
             obscureText: false,
             hintText: 'Email address',
@@ -63,77 +72,56 @@ class _SignUpFormState extends State<SignUpForm> {
               return MyValidatorsHelper.emailValidator(text);
             },
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'Password',
-            style: AppStyle.font16blacksemibold,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          CustomTextFormFiled(
+          SizedBox(height: 20.h),
+          CustomTextFormField(
             fillColor: ColorManager.darkGreyColor,
-            obscureText: ispassword,
+            obscureText: isPassword,
             suffixIcon: InkWell(
               splashColor: Colors.transparent,
               onTap: () {
                 setState(() {
-                  ispassword = !ispassword;
+                  isPassword = !isPassword;
                 });
               },
-              child: ispassword
+              child: isPassword
                   ? const Icon(Icons.visibility_off)
                   : const Icon(Icons.visibility),
             ),
-            hintText: 'Min 6 Cyfr',
+            hintText: 'Min 6 Characters',
             keyboardType: TextInputType.visiblePassword,
             controller: signUpCubit.passwordController,
             validator: (text) {
               return MyValidatorsHelper.passwordValidator(text);
             },
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'City',
-            style: AppStyle.font16blacksemibold,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          CustomTextFormFiled(
-            obscureText: false,
-            hintText: 'city',
+          SizedBox(height: 20.h),
+          CustomTextFormField(
             fillColor: ColorManager.darkGreyColor,
-            keyboardType: TextInputType.emailAddress,
-            controller: signUpCubit.cityController,
-            validator: (text) {
-              return MyValidatorsHelper.cityValidator(text);
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'phone',
-            style: AppStyle.font16blacksemibold,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          CustomTextFormFiled(
             obscureText: false,
-            fillColor: ColorManager.darkGreyColor,
-            hintText: 'phone Number',
-            keyboardType: TextInputType.emailAddress,
+            hintText: 'Phone Number',
+            keyboardType: TextInputType.phone,
             controller: signUpCubit.phoneController,
             validator: (text) {
               return MyValidatorsHelper.phoneValidator(text);
             },
           ),
+          SizedBox(height: 20.h),
+          if (selectedRole == 'Mechanic')
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomTextFormField(
+                  fillColor: ColorManager.darkGreyColor,
+                  obscureText: false,
+                  hintText: 'Address',
+                  keyboardType: TextInputType.text,
+                  controller: signUpCubit.addressController,
+                  validator: (text) {
+                    return MyValidatorsHelper.addressValidator(text);
+                  },
+                ),
+              ],
+            ),
         ],
       ),
     );

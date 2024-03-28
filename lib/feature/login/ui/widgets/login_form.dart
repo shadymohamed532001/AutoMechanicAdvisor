@@ -1,6 +1,5 @@
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/core/widgets/app_text_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,14 +26,10 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Email',
-            style: AppStyle.font16blacksemibold,
-          ),
           SizedBox(
-            height: 5.h,
+            height: 40.h,
           ),
-          CustomTextFormFiled(
+          CustomTextFormField(
             obscureText: false,
             fillColor: ColorManager.darkGreyColor,
             hintText: 'Email',
@@ -45,16 +40,9 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           SizedBox(
-            height: 20.h,
+            height: 30.h,
           ),
-          Text(
-            'Password',
-            style: AppStyle.font16blacksemibold,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          CustomTextFormFiled(
+          CustomTextFormField(
             obscureText: ispassword,
             fillColor: ColorManager.darkGreyColor,
             suffixIcon: InkWell(

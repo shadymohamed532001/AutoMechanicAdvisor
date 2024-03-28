@@ -25,16 +25,13 @@ class LoginCubit extends Cubit<LoginState> {
         LoginLoading()); // Emit a loading state while sign-in process is ongoing
 
     try {
-      // Create form data for API request
-      FormData formData = FormData.fromMap({
-        'email': email,
-        'password': password,
-      });
-
       // Send post request to sign-in endpoint
-      var response = await ApiServices.postFormData(
+      var response = await ApiServices.postData(
         endpoint: loginendpoint,
-        formData: formData,
+        data: {
+          'email': email,
+          'password': password,
+        },
       );
 
       // Parse the response into a UserModel object

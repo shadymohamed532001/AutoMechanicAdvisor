@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 
-class CustomTextFormFiled extends StatelessWidget {
-  const CustomTextFormFiled({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
     this.onChanged,
     this.onFieldSubmitted,
