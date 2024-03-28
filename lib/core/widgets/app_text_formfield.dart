@@ -1,10 +1,10 @@
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled({
-    super.key,
+    Key? key,
     this.onChanged,
     this.onFieldSubmitted,
     this.onSaved,
@@ -19,7 +19,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.decoration,
-  });
+  }) : super(key: key);
 
   final Function(String)? onChanged;
   final Function(String)? onFieldSubmitted;
@@ -51,34 +51,32 @@ class CustomTextFormFiled extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       onSaved: onSaved,
       validator: validator,
-      decoration: decoration ??
+      decoration: (decoration ??
           InputDecoration(
             suffixIcon: suffixIcon,
             suffixIconColor: const Color.fromARGB(255, 101, 98, 98),
             prefixIcon: prefixIcon,
             filled: true,
-            fillColor: ColorManger.lightMoreGreyColor,
+            fillColor: fillColor ??
+                ColorManager
+                    .whiteColor, // Using provided fillColor or default grey color
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
-                color: ColorManger.lightMoreGreyColor,
+                color: ColorManager.darkGreyColor,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
-                color: ColorManger.primaryColor,
+                color: ColorManager.whiteColor,
               ),
             ),
-            errorBorder: buildOutlineInputBorder(
-              width: 2,
-            ),
-            focusedErrorBorder: buildOutlineInputBorder(
-              width: 2,
-            ),
+            errorBorder: buildOutlineInputBorder(width: 2),
+            focusedErrorBorder: buildOutlineInputBorder(width: 2),
             hintText: hintText,
             hintStyle: AppStyle.font14Greyregular,
-          ),
+          )),
     );
   }
 }
@@ -88,7 +86,7 @@ OutlineInputBorder buildOutlineInputBorder({required double width}) {
     borderRadius: BorderRadius.circular(18),
     borderSide: BorderSide(
       width: width,
-      color: ColorManger.primaryColor,
+      color: ColorManager.primaryColor,
     ),
   );
 }

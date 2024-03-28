@@ -1,4 +1,4 @@
-import 'package:auto_mechanic_advisor/shared/widgets/contimer_clip_path.dart';
+import 'package:auto_mechanic_advisor/core/widgets/contimer_clip_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,4 +1,4 @@
-import 'package:auto_mechanic_advisor/shared/networking/end_boint.dart';
+import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
 import 'package:dio/dio.dart';
 
 class ApiServices {

@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_styles.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,7 +35,7 @@ class CustomBottom extends StatelessWidget {
           backgroundColor: backgroundColor,
           shape: StadiumBorder(
             side: BorderSide(
-              color: ColorManger.primaryColor,
+              color: ColorManager.primaryColor,
             ),
           ),
         ),

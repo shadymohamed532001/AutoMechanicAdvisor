@@ -1,7 +1,9 @@
+import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/login/ui/views/login_view.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/ui/views/on_boarding_view.dart';
-import 'package:auto_mechanic_advisor/shared/routing/routes.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/routing/routes.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,13 +43,13 @@ class AppRoutes {
       //     );
       //   }
 
-      // case Routes.loginViewsRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => BlocProvider(
-      //       create: (context) => LoginCubit(),
-      //       child: const LoginView(),
-      //     ),
-      //   );
+      case Routes.loginViewsRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const LoginView(),
+          ),
+        );
 
       // case Routes.signUpViewsRoute:
       //   return MaterialPageRoute(
@@ -74,7 +76,7 @@ class AppRoutes {
           child: Text('noRouteFounded',
               style: TextStyle(
                 fontSize: 28,
-                color: ColorManger.blackColor,
+                color: ColorManager.blackColor,
               )),
         ),
       ),

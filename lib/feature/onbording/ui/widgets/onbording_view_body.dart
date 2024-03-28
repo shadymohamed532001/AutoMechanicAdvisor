@@ -1,13 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_image_assets.dart';
-import 'package:auto_mechanic_advisor/shared/utils/app_styles.dart';
-import 'package:auto_mechanic_advisor/shared/widgets/app_bottom.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
+import 'package:auto_mechanic_advisor/core/widgets/app_bottom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingViewBody extends StatefulWidget {
@@ -72,10 +71,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                     child: CustomBottom(
                       textBottomStyle: AppStyle.font16Whitesemibold,
                       onPressed: () {
-                        BlocProvider.of<OnboardingCubit>(context)
-                            .navigateToAuth(context: context);
+                        widget.cubit.navigateToAuth(context: context);
                       },
-                      backgroundColor: ColorManger.primaryColor,
+                      backgroundColor: ColorManager.primaryColor,
                       bottomtext: 'Get Started Now',
                     ),
                   ),

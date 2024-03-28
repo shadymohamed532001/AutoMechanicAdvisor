@@ -1,4 +1,4 @@
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -76,7 +76,7 @@ class AppStyle {
   static TextStyle font14Primarysemibold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
-    color: ColorManger.primaryColor,
+    color: ColorManager.primaryColor,
   );
 
   // White Color Styles

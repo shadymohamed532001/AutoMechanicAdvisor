@@ -1,7 +1,7 @@
 // Import necessary packages and files
-import 'package:auto_mechanic_advisor/shared/helper/naviagtion_extentaions.dart';
-import 'package:auto_mechanic_advisor/shared/networking/local_services.dart';
-import 'package:auto_mechanic_advisor/shared/routing/routes.dart';
+import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
+import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
+import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

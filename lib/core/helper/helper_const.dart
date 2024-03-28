@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:auto_mechanic_advisor/shared/networking/local_services.dart';
+import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:flutter/material.dart';
 
 String? usertoken;

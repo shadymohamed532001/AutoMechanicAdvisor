@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -14,7 +14,7 @@ void showTouster({
     gravity: ToastGravity.TOP_RIGHT,
     timeInSecForIosWeb: 2,
     backgroundColor: showsToustColor(state),
-    textColor: ColorManger.whiteColor,
+    textColor: ColorManager.whiteColor,
     fontSize: 16.0,
   );
 }
@@ -30,13 +30,13 @@ Color showsToustColor(ToustState state) {
 
   switch (state) {
     case ToustState.SUCCESS:
-      color = ColorManger.primaryColor;
+      color = ColorManager.primaryColor;
       break;
     case ToustState.ERROR:
-      color = ColorManger.redColor;
+      color = ColorManager.redColor;
       break;
     case ToustState.WARNING:
-      color = ColorManger.greyColor;
+      color = ColorManager.greyColor;
       break;
   }
   return color;
