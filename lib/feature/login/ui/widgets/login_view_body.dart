@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
@@ -52,8 +51,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               value: state.loginModel.data!.token,
             ).then(
               (value) {
-                context.navigateAndRemoveUntil(
-                  newRoute: Routes.homeViewsRoute,
+                context.navigateTo(
+                  routeName: Routes.homeViewsRoute,
                 );
               },
             );
@@ -102,7 +101,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     height: 60.h,
                   ),
-                  FadeInRight(
+                  FadeInDown(
                     child: const LoginForm(),
                   ),
                   SizedBox(

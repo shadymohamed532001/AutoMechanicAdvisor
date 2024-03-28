@@ -51,8 +51,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               value: state.registerModel.data!.token,
             ).then(
               (value) {
-                context.navigateAndRemoveUntil(
-                  newRoute: Routes.homeViewsRoute,
+                context.navigateTo(
+                  routeName: Routes.homeViewsRoute,
                 );
               },
             );
@@ -87,15 +87,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                    'Log In To Your Account',
-                    style: AppStyle.font20blacksemibold,
-                  ),
+                  SizedBox(height: 20.h),
                   Text(
                     'We ‘re happy to see you back again',
                     style: AppStyle.font16Greyregular,
                   ),
-                  FadeInRight(
+                  FadeInDown(
                     child: const SignUpForm(),
                   ),
                   SizedBox(

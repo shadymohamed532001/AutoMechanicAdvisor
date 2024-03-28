@@ -31,7 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 50.h,
+            height: 30.h,
           ),
           CustomDropdownButton<String>(
             value: selectedRole,
@@ -50,7 +50,9 @@ class _SignUpFormState extends State<SignUpForm> {
             iconSize: 30,
             dropdownColor: ColorManager.darkGreyColor,
           ),
-          SizedBox(height: 20.h),
+          selectedRole == 'User'
+              ? SizedBox(height: 30.h)
+              : SizedBox(height: 30.h),
           CustomTextFormField(
             fillColor: ColorManager.darkGreyColor,
             obscureText: false,
@@ -95,17 +97,6 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           SizedBox(height: 20.h),
-          CustomTextFormField(
-            fillColor: ColorManager.darkGreyColor,
-            obscureText: false,
-            hintText: 'Phone Number',
-            keyboardType: TextInputType.phone,
-            controller: signUpCubit.phoneController,
-            validator: (text) {
-              return MyValidatorsHelper.phoneValidator(text);
-            },
-          ),
-          SizedBox(height: 20.h),
           if (selectedRole == 'Mechanic')
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,8 +111,22 @@ class _SignUpFormState extends State<SignUpForm> {
                     return MyValidatorsHelper.addressValidator(text);
                   },
                 ),
+                SizedBox(height: 20.h),
+                CustomTextFormField(
+                  fillColor: ColorManager.darkGreyColor,
+                  obscureText: false,
+                  hintText: 'Phone Number',
+                  keyboardType: TextInputType.phone,
+                  controller: signUpCubit.phoneController,
+                  validator: (text) {
+                    return MyValidatorsHelper.phoneValidator(text);
+                  },
+                ),
               ],
             ),
+          selectedRole == 'User'
+              ? SizedBox(height: 80.h)
+              : SizedBox(height: 0.h),
         ],
       ),
     );

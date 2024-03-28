@@ -30,7 +30,7 @@ class UserModel {
 
 // Class representing additional data associated with a user
 class Data {
-  String? city; // User's city
+  String? address; // User's city
   String? email; // User's email
   String? fullName; // User's full name
   String? phoneNumber; // User's phone number
@@ -40,7 +40,7 @@ class Data {
 
   // Constructor for Data class with optional parameters
   Data({
-    this.city,
+    this.address,
     this.email,
     this.fullName,
     this.phoneNumber,
@@ -52,7 +52,7 @@ class Data {
   // Convert Data object to JSON format
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['city'] = city; // Add city to JSON
+    data['address'] = address; // Add city to JSON
     data['email'] = email; // Add email to JSON
     data['fullName'] = fullName; // Add full name to JSON
     data['phoneNumber'] = phoneNumber; // Add phone number to JSON
@@ -65,7 +65,7 @@ class Data {
 
   // Constructor to create Data object from JSON data
   Data.fromJson(Map<String, dynamic> json) {
-    city = json['city']; // Get city from JSON
+    address = json['address']; // Get city from JSON
     email = json['email']; // Get email from JSON
     fullName = json['fullName']; // Get full name from JSON
     phoneNumber = json['phoneNumber']; // Get phone number from JSON
