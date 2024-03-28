@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/widgets/custom_dropdown_button.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/ui/widgets/custom_dropdown_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_mechanic_advisor/core/widgets/app_text_formfield.dart';

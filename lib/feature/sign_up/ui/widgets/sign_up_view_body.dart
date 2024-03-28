@@ -12,8 +12,8 @@ import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/core/widgets/app_bottom.dart';
 import 'package:auto_mechanic_advisor/core/widgets/shows_toust_color.dart';
 import 'package:auto_mechanic_advisor/feature/login/models/user_model.dart';
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/widgets/sign_up_form.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/ui/widgets/sign_up_form.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});

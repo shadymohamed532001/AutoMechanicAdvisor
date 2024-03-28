@@ -1,11 +1,12 @@
+import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/login/ui/views/login_view.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/ui/views/on_boarding_view.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/views/sign_up_view.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/ui/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,10 +62,10 @@ class AppRoutes {
           ),
         );
 
-      // case Routes.homeViewsRoute:
-      //   return MaterialPageRoute(
-      //     builder: ((context) => const HomeView()),
-      //   );
+      case Routes.homeViewsRoute:
+        return MaterialPageRoute(
+          builder: ((context) => const HomeView()),
+        );
 
       default:
         return _unFoundRoute();
