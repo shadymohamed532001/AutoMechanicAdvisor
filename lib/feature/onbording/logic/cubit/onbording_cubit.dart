@@ -41,47 +41,48 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   // Method to handle change of page index in page view
-  void onChangePageIndex(index) {
-    if (index == onboardingPages().length - 1) {
-      isLastBoarding =
-          true; // Set isLastBoarding to true if last page is reached
-    } else {
-      isLastBoarding = false; // Set isLastBoarding to false otherwise
-    }
-    emit(PageViewIndexChangedState());
-  }
+  // void onChangePageIndex(index) {
+  //   if (index == onboardingPages().length - 1) {
+  //     isLastBoarding =
+  //         true; // Set isLastBoarding to true if last page is reached
+  //   } else {
+  //     isLastBoarding = false; // Set isLastBoarding to false otherwise
+  //   }
+  //   emit(PageViewIndexChangedState());
+  // }
 
-  // Method to navigate between onboarding pages
-  void navigateBetweenPages({
-    required BuildContext context,
-    required PageController pageController,
-  }) {
-    if (isLastBoarding) {
-      navigateToAuth(
-          context:
-              context); // Navigate to authentication page if last onboarding page is reached
-    } else {
-      pageController.nextPage(
-        duration: const Duration(seconds: 1),
-        curve: Curves.fastLinearToSlowEaseIn,
-      ); // Move to the next page in the page view
-    }
-    emit(NavigateBetweenPages());
-  }
-}
+//   // Method to navigate between onboarding pages
+//   void navigateBetweenPages({
+//     required BuildContext context,
+//     required PageController pageController,
+//   }) {
+//     if (isLastBoarding) {
+//       navigateToAuth(
+//           context:
+//               context); // Navigate to authentication page if last onboarding page is reached
+//     } else {
+//       pageController.nextPage(
+//         duration: const Duration(seconds: 1),
+//         curve: Curves.fastLinearToSlowEaseIn,
+//       ); // Move to the next page in the page view
+//     }
+//     emit(NavigateBetweenPages());
+//   }
+// }
 
 // Function to navigate to authentication page
-void navigateToAuth({required BuildContext context}) {
-  LocalServices.saveData(
-    key: 'onbording',
-    value: true,
-  ).then(
-    (value) {
-      if (value) {
-        context.navigateTo(
-          routeName: Routes.loginViewsRoute,
-        ); // Navigate to login page
-      }
-    },
-  );
+  void navigateToAuth({required BuildContext context}) {
+    LocalServices.saveData(
+      key: 'onbording',
+      value: true,
+    ).then(
+      (value) {
+        if (value) {
+          context.navigateTo(
+            routeName: Routes.loginViewsRoute,
+          ); // Navigate to login page
+        }
+      },
+    );
+  }
 }

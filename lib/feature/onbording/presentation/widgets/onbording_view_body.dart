@@ -35,75 +35,64 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: pageController,
-      onPageChanged: (index) {
-        widget.cubit.onChangePageIndex(index);
-      },
-      itemCount:
-          BlocProvider.of<OnboardingCubit>(context).onboardingPages().length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(
-                  widget.cubit.onboardingPages()[index].imagePath!,
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FadeInUp(
-                        child: TittleAndSubtittleText(index: index),
-                      ),
-                      SizedBox(
-                        height: 80.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomDotItems(
-                            currnetIndex: index,
-                          ),
-                          FadeInRight(
-                            duration: const Duration(milliseconds: 700),
-                            child: GestureDetector(
-                              onTap: () {
-                                widget.cubit.navigateBetweenPages(
-                                  context: context,
-                                  pageController: pageController,
-                                );
-                              },
-                              child: Text(
-                                index ==
-                                        BlocProvider.of<OnboardingCubit>(
-                                                    context)
-                                                .onboardingPages()
-                                                .length -
-                                            1
-                                    ? 'Get Started Now'
-                                    : 'Next',
-                                // style: AppStyle.font15PrimaryBold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              widget.cubit.onboardingPages()[0].imagePath!,
             ),
-          ),
-        );
-      },
+            SizedBox(
+              height: 40.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FadeInUp(
+                    child: TittleAndSubtittleText(index: 0),
+                  ),
+                  SizedBox(
+                    height: 80.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomDotItems(
+                        currnetIndex: 0,
+                      ),
+                      FadeInRight(
+                        duration: const Duration(milliseconds: 700),
+                        child: GestureDetector(
+                          onTap: () {
+                            // widget.cubit.navigateBetweenPages(
+                            //   context: context,
+                            //   pageController: pageController,
+                            // );
+                          },
+                          child: Text(
+                            0 ==
+                                    BlocProvider.of<OnboardingCubit>(context)
+                                            .onboardingPages()
+                                            .length -
+                                        1
+                                ? 'Get Started Now'
+                                : 'Next',
+                            // style: AppStyle.font15PrimaryBold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
