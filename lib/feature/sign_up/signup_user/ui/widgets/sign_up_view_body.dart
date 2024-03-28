@@ -1,34 +1,33 @@
 import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
-import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/login/models/user_model.dart';
-import 'package:auto_mechanic_advisor/feature/login/ui/widgets/login_form.dart';
 import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
 import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/core/widgets/app_bottom.dart';
 import 'package:auto_mechanic_advisor/core/widgets/shows_toust_color.dart';
+import 'package:auto_mechanic_advisor/feature/login/models/user_model.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginViewBody extends StatefulWidget {
-  const LoginViewBody({super.key});
+class SignUpViewBody extends StatefulWidget {
+  const SignUpViewBody({super.key});
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
+  State<SignUpViewBody> createState() => _SignUpViewBodyState();
 }
 
-class _LoginViewBodyState extends State<LoginViewBody> {
+class _SignUpViewBodyState extends State<SignUpViewBody> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        if (state is LoginLoading) {
+        if (state is SignUpLoading) {
           showDialog(
             context: context,
             builder: (_) => Center(
@@ -38,18 +37,18 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ),
           );
         }
-        if (state is LoginSuccess) {
-          if (state.loginModel.status == true) {
+        if (state is SignUpSuccess) {
+          if (state.registerModel.status == true) {
             Navigator.of(context).pop();
             showTouster(
-              massage: state.loginModel.message!,
+              massage: state.registerModel.message!,
               state: ToustState.SUCCESS,
             );
-            saveUserData(state.loginModel.data!);
+            saveUserData(state.registerModel.data!);
 
             LocalServices.saveData(
               key: 'token',
-              value: state.loginModel.data!.token,
+              value: state.registerModel.data!.token,
             ).then(
               (value) {
                 context.navigateAndRemoveUntil(
@@ -59,32 +58,32 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             );
           }
         }
-        if (state is LoginError) {
+        if (state is SignUpError) {
           Navigator.of(context).pop(); // close the dialog if login fails
           showTouster(
-            massage: state.error,
+            massage: state.errorMessage,
             state: ToustState.ERROR,
           );
         }
       },
       builder: (context, state) {
-        var loginCubite = BlocProvider.of<LoginCubit>(context);
+        var signUpCubite = BlocProvider.of<SignUpCubit>(context);
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 40.h),
+          padding:
+              EdgeInsets.symmetric(horizontal: 18.w, vertical: 40.h).copyWith(
+            bottom: 0,
+          ),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 30.h,
-                  ),
                   SafeArea(
                     child: Image.asset(
                       ImagesAssetsManager.applogoImage,
-                      width: 130.w,
-                      height: 50.h,
+                      width: 120.w,
+                      height: 40.h,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -92,59 +91,35 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     'Log In To Your Account',
                     style: AppStyle.font20blacksemibold,
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
                   Text(
                     'We ‘re happy to see you back again',
                     style: AppStyle.font16Greyregular,
                   ),
-                  SizedBox(
-                    height: 60.h,
-                  ),
                   FadeInRight(
-                    child: const LoginForm(),
+                    child: const SignUpForm(),
                   ),
                   SizedBox(
-                    height: 20.h,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Forgot your password?',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(color: ColorManager.whiteColor),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100.h,
+                    height: 30.h,
                   ),
                   CustomBottom(
-                    bottomtext: 'Login',
+                    bottomtext: 'Sign Up',
                     textBottomStyle: AppStyle.font16Whitesemibold,
                     onPressed: () {
-                      if (loginCubite.formKey.currentState!.validate() ==
+                      if (signUpCubite.formKey.currentState!.validate() ==
                           true) {
-                        loginUser(context);
+                        signUp(context);
                       } else {
-                        loginCubite.autovalidateMode = AutovalidateMode.always;
+                        signUpCubite.autovalidateMode = AutovalidateMode.always;
                         setState(() {});
                       }
                     },
                     backgroundColor: ColorManager.primaryColor,
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 10.h,
                   ),
                   Text(
-                    'Don’t have account?',
+                    'I have account ?',
                     style: AppStyle.font16Greyregular,
                   ),
                   SizedBox(
@@ -152,10 +127,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.navigateTo(routeName: Routes.signUpViewsRoute);
+                      context.navigateAndReplacement(
+                          newRoute: Routes.loginViewsRoute);
                     },
                     child: Text(
-                      'Sign Up',
+                      'Login',
                       style: AppStyle.font14Primarysemibold,
                     ),
                   ),
@@ -168,10 +144,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 
-  void loginUser(BuildContext context) {
-    BlocProvider.of<LoginCubit>(context).userSignIn(
-      email: context.read<LoginCubit>().emailController.text,
-      password: context.read<LoginCubit>().passwordController.text,
+  void signUp(BuildContext context) {
+    BlocProvider.of<SignUpCubit>(context).userSignUp(
+      email: context.read<SignUpCubit>().emailController.text,
+      password: context.read<SignUpCubit>().passwordController.text,
+      city: context.read<SignUpCubit>().cityController.text,
+      fullName: context.read<SignUpCubit>().nameController.text,
+      phoneNumber: context.read<SignUpCubit>().passwordController.text,
     );
   }
 

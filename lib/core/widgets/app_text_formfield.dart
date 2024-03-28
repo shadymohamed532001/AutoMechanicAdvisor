@@ -4,7 +4,7 @@ import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled({
-    Key? key,
+    super.key,
     this.onChanged,
     this.onFieldSubmitted,
     this.onSaved,
@@ -19,7 +19,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.decoration,
-  }) : super(key: key);
+  });
 
   final Function(String)? onChanged;
   final Function(String)? onFieldSubmitted;

@@ -4,6 +4,8 @@ import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.da
 import 'package:auto_mechanic_advisor/feature/onbording/ui/views/on_boarding_view.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/logic/sign_up_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/sign_up/signup_user/ui/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -51,13 +53,13 @@ class AppRoutes {
           ),
         );
 
-      // case Routes.signUpViewsRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => BlocProvider(
-      //       create: (context) => SignUpCubit(),
-      //       child: const SignUpView(),
-      //     ),
-      //   );
+      case Routes.signUpViewsRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => SignUpCubit(),
+            child: const SignUpView(),
+          ),
+        );
 
       // case Routes.homeViewsRoute:
       //   return MaterialPageRoute(
