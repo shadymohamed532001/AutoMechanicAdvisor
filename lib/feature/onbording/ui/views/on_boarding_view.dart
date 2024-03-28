@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/feature/onbording/logic/cubit/onbording_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/onbording/presentation/widgets/onbording_view_body.dart';
+import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/onbording/ui/widgets/onbording_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

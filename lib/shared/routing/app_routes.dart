@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/feature/onbording/logic/cubit/onbording_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/onbording/presentation/on_boarding_view.dart';
+import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/onbording/ui/views/on_boarding_view.dart';
 import 'package:auto_mechanic_advisor/shared/routing/routes.dart';
 import 'package:auto_mechanic_advisor/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';

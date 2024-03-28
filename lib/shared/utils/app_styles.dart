@@ -101,4 +101,9 @@ class AppStyle {
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
+  static TextStyle font22Whitesemibold = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
 }
