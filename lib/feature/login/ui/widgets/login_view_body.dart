@@ -30,7 +30,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         if (state is LoginLoading) {
           showDialog(
             context: context,
-            builder: (_) => Center(
+            builder: (_) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.whiteColor,
               ),

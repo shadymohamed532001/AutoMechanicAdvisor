@@ -32,7 +32,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         if (state is SignUpLoading) {
           showDialog(
             context: context,
-            builder: (_) => Center(
+            builder: (_) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.whiteColor,
               ),
