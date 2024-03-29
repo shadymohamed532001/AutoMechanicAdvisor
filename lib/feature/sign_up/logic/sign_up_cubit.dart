@@ -1,6 +1,3 @@
-// Import necessary packages and files
-
-// Import the sign-up state file
 import 'package:auto_mechanic_advisor/core/error/servier_failure.dart';
 import 'package:auto_mechanic_advisor/core/networking/api_services.dart';
 import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
@@ -9,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'sign_up_state.dart';
 
@@ -31,11 +29,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     try {
       // Create form data for API request
       FormData formData = FormData.fromMap({
+        'image': await MultipartFile.fromFile(image!.path),
         'email': email,
         'password': password,
         'fullName': fullName,
-        'phoneNumber': phoneNumber,
-        'city': city,
       });
 
       // Send post request to sign-up endpoint
@@ -57,9 +54,9 @@ class SignUpCubit extends Cubit<SignUpState> {
           errorMessage: ServerFailure.fromDioException(e).errMessage.toString(),
         ));
       } else {
-        emit(SignUpError(
+        emit(const SignUpError(
           // Emit an error state with the error message
-          errorMessage: ServerFailure(e.toString()).errMessage.toString(),
+          errorMessage: 'please upload your image',
         ));
       }
     }
@@ -78,11 +75,12 @@ class SignUpCubit extends Cubit<SignUpState> {
     try {
       // Create form data for API request
       FormData formData = FormData.fromMap({
+        'image': await MultipartFile.fromFile(image!.path),
         'email': email,
         'password': password,
         'fullName': fullName,
         'phoneNumber': phoneNumber,
-        'city': address,
+        'address': address,
         'userType': 'mechanic'
       });
 
@@ -105,11 +103,35 @@ class SignUpCubit extends Cubit<SignUpState> {
           errorMessage: ServerFailure.fromDioException(e).errMessage.toString(),
         ));
       } else {
-        emit(SignUpError(
+        emit(const SignUpError(
           // Emit an error state with the error message
-          errorMessage: ServerFailure(e.toString()).errMessage.toString(),
+          errorMessage: 'please upload your image',
         ));
       }
+    }
+  }
+
+  XFile? image;
+
+  Future<void> uploadImageFromGalleryModel(
+      {required ImagePicker picker}) async {
+    try {
+      XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        // Image picked, proceed with upload
+        image = pickedFile;
+        emit(UploadImageFromGallerySuccessState(image: image!));
+
+        // Here, you can call the method to upload the image to the server
+        // Example: uploadImageToServer(image!);
+      } else {
+        // No image picked, emit error state
+        emit(const UploadImageErrorState(errorMessage: "No image picked"));
+      }
+    } catch (e) {
+      // Error occurred during image picking, emit error state
+      emit(UploadImageErrorState(errorMessage: e.toString()));
     }
   }
 

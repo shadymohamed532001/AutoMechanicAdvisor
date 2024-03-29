@@ -125,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ],
             ),
           selectedRole == 'User'
-              ? SizedBox(height: 80.h)
+              ? SizedBox(height: 10.h)
               : SizedBox(height: 0.h),
         ],
       ),

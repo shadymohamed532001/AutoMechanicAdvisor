@@ -32,3 +32,15 @@ final class SignUpError extends SignUpState {
 
 // Define state for changing password visibility in the sign-up form
 final class SignUpChangePasswordVisibility extends SignUpState {}
+
+final class UploadImageFromGallerySuccessState extends SignUpState {
+  final XFile image;
+
+  const UploadImageFromGallerySuccessState({required this.image});
+}
+
+final class UploadImageErrorState extends SignUpState {
+  final String errorMessage;
+
+  const UploadImageErrorState({required this.errorMessage});
+}

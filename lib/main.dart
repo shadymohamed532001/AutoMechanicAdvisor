@@ -5,7 +5,6 @@ import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/routing/app_routes.dart';
 
 void main() async {

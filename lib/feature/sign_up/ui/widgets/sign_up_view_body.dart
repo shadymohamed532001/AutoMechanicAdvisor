@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:auto_mechanic_advisor/core/widgets/shows_toust_color.dart';
 import 'package:auto_mechanic_advisor/feature/login/models/user_model.dart';
 import 'package:auto_mechanic_advisor/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/sign_up/ui/widgets/sign_up_form.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -59,7 +61,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           }
         }
         if (state is SignUpError) {
-          Navigator.of(context).pop(); // close the dialog if login fails
+          Navigator.of(context).pop();
           showTouster(
             massage: state.errorMessage,
             state: ToustState.ERROR,
@@ -91,6 +93,24 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   Text(
                     'We ‘re happy to see you back again',
                     style: AppStyle.font16Greyregular,
+                  ),
+                  SizedBox(height: 20.h),
+                  GestureDetector(
+                    onTap: () async {
+                      await signUpCubite.uploadImageFromGalleryModel(
+                        picker: ImagePicker(),
+                      );
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: ColorManager.darkGreyColor,
+                      backgroundImage: signUpCubite.image != null
+                          ? FileImage(File(signUpCubite.image!.path))
+                          : null,
+                      child: signUpCubite.image == null
+                          ? const Icon(Icons.add_photo_alternate)
+                          : null,
+                    ),
                   ),
                   FadeInDown(
                     child: const SignUpForm(),
