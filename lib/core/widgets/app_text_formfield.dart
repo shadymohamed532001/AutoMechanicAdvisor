@@ -62,13 +62,13 @@ class CustomTextFormField extends StatelessWidget {
                     .whiteColor, // Using provided fillColor or default grey color
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorManager.darkGreyColor,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorManager.whiteColor,
               ),
             ),

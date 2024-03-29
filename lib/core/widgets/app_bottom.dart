@@ -33,7 +33,7 @@ class CustomBottom extends StatelessWidget {
             vertical: 10,
           ),
           backgroundColor: backgroundColor,
-          shape: StadiumBorder(
+          shape: const StadiumBorder(
             side: BorderSide(
               color: ColorManager.primaryColor,
             ),

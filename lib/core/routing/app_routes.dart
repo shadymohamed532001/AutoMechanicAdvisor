@@ -1,3 +1,4 @@
+import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
 import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/login/ui/views/login_view.dart';
@@ -14,45 +15,30 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => OnboardingCubit(),
-            child: const OnBordingView(),
-          ),
-        );
-      // case Routes.initialRoute:
-      //   if (onBording != null) {
-      //     if (usertoken != null) {
-      //       return MaterialPageRoute(
-      //         builder: (context) => BlocProvider(
-      //           create: (context) => OnboardingCubit(),
-      //           child: const HomeView(),
-      //         ),
-      //       );
-      //     } else {
-      //       return MaterialPageRoute(
-      //         builder: (context) => BlocProvider(
-      //           create: (context) => LoginCubit(),
-      //           child: const LoginView(),
-      //         ),
-      //       );
-      //     }
-      //   } else {
-      //     return MaterialPageRoute(
-      //       builder: (context) => BlocProvider(
-      //         create: (context) => OnboardingCubit(),
-      //         child: const OnBordingView(),
-      //       ),
-      //     );
-      //   }
-
-      case Routes.loginViewsRoute:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => LoginCubit(),
-            child: const LoginView(),
-          ),
-        );
+        if (onBording != null) {
+          if (usertoken != null) {
+            return MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => OnboardingCubit(),
+                child: const HomeView(),
+              ),
+            );
+          } else {
+            return MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => LoginCubit(),
+                child: const LoginView(),
+              ),
+            );
+          }
+        } else {
+          return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+              create: (context) => OnboardingCubit(),
+              child: const OnBordingView(),
+            ),
+          );
+        }
 
       case Routes.signUpViewsRoute:
         return MaterialPageRoute(
@@ -74,7 +60,7 @@ class AppRoutes {
 
   static Route<dynamic> _unFoundRoute() {
     return MaterialPageRoute(
-      builder: (context) => Scaffold(
+      builder: (context) => const Scaffold(
         body: Center(
           child: Text('noRouteFounded',
               style: TextStyle(
