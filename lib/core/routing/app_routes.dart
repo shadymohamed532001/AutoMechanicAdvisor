@@ -40,6 +40,13 @@ class AppRoutes {
           );
         }
 
+      case Routes.loginViewsRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const LoginView(),
+          ),
+        );
       case Routes.signUpViewsRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
