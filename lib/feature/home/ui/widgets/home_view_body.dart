@@ -1,3 +1,6 @@
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/widgets/primary_header_continer.dart';
+import 'package:auto_mechanic_advisor/feature/home/ui/widgets/home_appbar_content.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -10,12 +13,32 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        Text('Home View Body'),
-        Row(),
+        PrimaryHeaderContiner(
+          height: MediaQuery.of(context).size.height * 0.17,
+          child: const SafeArea(
+            child: HomeAppBarContent(),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            height: 200,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: ColorManager.whiteColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24),
+                topRight: Radius.circular(24),
+              ),
+            ),
+            child: const Column(
+              children: [
+                Text('HomeViewBody'),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

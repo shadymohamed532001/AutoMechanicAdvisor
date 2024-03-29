@@ -1,4 +1,5 @@
-import 'package:auto_mechanic_advisor/core/widgets/contimer_clip_path.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,42 +13,23 @@ class PrimaryHeaderContiner extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height.h,
-      child: ClipPath(
-        clipper: ContainerHomeClipper(),
-        child: Container(
-          margin: EdgeInsets.zero,
-          color: const Color(0xff85B642),
-          padding: const EdgeInsets.all(0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.3,
-            child: Stack(
-              children: [
-                Positioned(
-                  right: -200,
-                  top: -300,
-                  child: Container(
-                    height: 400,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(400),
-                      color: Colors.white.withOpacity(0.08),
-                    ),
-                  ),
+      child: Container(
+        margin: EdgeInsets.zero,
+        color: ColorManager.blackColor,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 1,
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: -20.h,
+                right: 0,
+                left: 0,
+                child: Image.asset(
+                  ImagesAssetsManager.linesImage,
                 ),
-                Positioned(
-                  right: -290,
-                  top: 50,
-                  child: Container(
-                      height: 400,
-                      width: 400,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(400),
-                        color: Colors.white.withOpacity(0.09),
-                      )),
-                ),
-                child,
-              ],
-            ),
+              ),
+              child,
+            ],
           ),
         ),
       ),
