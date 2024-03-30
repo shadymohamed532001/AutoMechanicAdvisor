@@ -50,7 +50,6 @@ class ApiServices {
   }) async {
     _dio!.options.headers = {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
 

@@ -1,5 +1,7 @@
-const baseUrl = 'https://3aaa-156-203-219-224.ngrok-free.app/api/v1/';
+const baseUrl = 'https://2835-156-203-219-224.ngrok-free.app';
 
-const loginendpoint = 'login';
+const loginendpoint = '/login';
 
-const registerendPoint = 'register';
+const registerendPoint = '/register';
+
+const userendpoint = '/user-details';

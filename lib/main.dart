@@ -2,6 +2,7 @@ import 'package:auto_mechanic_advisor/bloc_observer.dart.dart';
 import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
 import 'package:auto_mechanic_advisor/core/networking/api_services.dart';
 import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
+import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,11 +25,14 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: AppRoutes.onGenerateRoute,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.black,
+      child: BlocProvider(
+        create: (context) => HomeCubit()..getUserData(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: AppRoutes.onGenerateRoute,
+          theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: Colors.black,
+          ),
         ),
       ),
     );
