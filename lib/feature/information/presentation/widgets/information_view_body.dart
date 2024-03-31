@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/feature/info/presentation/widgets/custom_sliver_appbar.dart';
-import 'package:auto_mechanic_advisor/feature/info/presentation/widgets/see_all_info.dart';
+import 'package:auto_mechanic_advisor/feature/information/presentation/widgets/custom_sliver_appbar.dart';
+import 'package:auto_mechanic_advisor/feature/information/presentation/widgets/see_all_info.dart';
 import 'package:flutter/cupertino.dart';
 
 class InformationViewBody extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/feature/gpt/feature/chat/data/models/chat_model.dart';
+import 'package:auto_mechanic_advisor/feature/gpt/data/models/chat_model.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';

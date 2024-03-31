@@ -1,5 +1,5 @@
-import 'package:auto_mechanic_advisor/feature/gpt/feature/chat/data/models/chat_model.dart';
-import 'package:auto_mechanic_advisor/feature/gpt/feature/chat/data/repo/chat_repo.dart';
+import 'package:auto_mechanic_advisor/feature/gpt/data/models/chat_model.dart';
+import 'package:auto_mechanic_advisor/feature/gpt/data/repo/chat_repo.dart';
 import 'package:dio/dio.dart';
 
 class ChatRepoImpl implements ChatRepo {

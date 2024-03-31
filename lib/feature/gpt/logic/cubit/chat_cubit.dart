@@ -1,4 +1,4 @@
-import 'package:auto_mechanic_advisor/feature/gpt/feature/chat/data/repo/chat_repo.dart';
+import 'package:auto_mechanic_advisor/feature/gpt/data/repo/chat_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
