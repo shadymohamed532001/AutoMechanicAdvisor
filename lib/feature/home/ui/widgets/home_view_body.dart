@@ -1,6 +1,3 @@
-import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/core/widgets/primary_header_continer.dart';
 import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/home/ui/widgets/home_appbar_content.dart';
@@ -9,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});

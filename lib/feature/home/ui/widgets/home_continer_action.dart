@@ -1,3 +1,5 @@
+import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
+import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
@@ -50,7 +52,9 @@ class HomeContinerAction extends StatelessWidget {
                   vertical: 8.h,
                 ),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.navigateTo(routeName: Routes.informationViewsRoute);
+                  },
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(

@@ -37,7 +37,6 @@ class HomeCubit extends Cubit<HomeState> {
         );
         userData = User.fromJson(response);
         saveUserDataToLocalStorage(userData!);
-        print(userData!.data!.image);
         emit(GetUserDataSuccess(userData: userData!));
       }
     } catch (e) {
