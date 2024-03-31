@@ -8,8 +8,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http_parser/http_parser.dart';
-
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -25,15 +23,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
 
     try {
-      if (image == null) {
-        throw Exception('Image is not selected.');
-      }
-
       FormData formData = FormData.fromMap({
         'image': await MultipartFile.fromFile(
           image!.path,
           filename: 'photo_${DateTime.now().millisecondsSinceEpoch}.jpg',
-          contentType: MediaType('image', 'jpg'),
         ),
         'email': email,
         'password': password,
