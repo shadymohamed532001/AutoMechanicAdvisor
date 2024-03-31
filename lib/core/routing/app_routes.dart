@@ -1,4 +1,5 @@
 import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
+import 'package:auto_mechanic_advisor/feature/gpt/feature/chat/presenation/views/chat_screen.dart';
 
 import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
 import 'package:auto_mechanic_advisor/feature/info/presentation/views/information_view.dart';
@@ -65,6 +66,10 @@ class AppRoutes {
       case Routes.informationViewsRoute:
         return MaterialPageRoute(
           builder: ((context) => const InformationView()),
+        );
+      case Routes.chatViewsRoute:
+        return MaterialPageRoute(
+          builder: ((context) => const ChatView()),
         );
 
       default:

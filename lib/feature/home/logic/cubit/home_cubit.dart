@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:auto_mechanic_advisor/core/error/servier_failure.dart';
 import 'package:auto_mechanic_advisor/core/networking/api_services.dart';
 import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
@@ -27,7 +26,8 @@ class HomeCubit extends Cubit<HomeState> {
 
       if (username != null && userimage != null) {
         userData = User(data: Data(fullName: username, image: userimage));
-
+        username = userData!.data!.fullName;
+        userimage = userData!.data!.image;
         emit(GetUserDataSuccess(userData: userData!));
       } else {
         String token = await LocalServices.getData(key: 'token');
@@ -43,13 +43,13 @@ class HomeCubit extends Cubit<HomeState> {
       if (e is DioException) {
         log(e.error.toString());
         emit(GetUserDataError(
-          error: ServerFailure.fromDioException(e).errMessage.toString(),
+          error: ServerFailure.fromDioException(e).errMessage,
         ));
       } else {
         log(e.toString());
-        emit(GetUserDataError(
-          error: ServerFailure(e.toString()).errMessage.toString(),
-        ));
+        emit(
+          GetUserDataError(error: ServerFailure(e.toString()).errMessage),
+        );
       }
     }
   }

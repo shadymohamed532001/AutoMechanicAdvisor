@@ -152,7 +152,9 @@ class HomeContinerAction extends StatelessWidget {
                   vertical: 8.h,
                 ),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.navigateTo(routeName: Routes.chatViewsRoute);
+                  },
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
