@@ -4,7 +4,7 @@ import 'package:auto_mechanic_advisor/core/error/servier_failure.dart';
 import 'package:auto_mechanic_advisor/core/networking/api_services.dart';
 import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
 import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
-import 'package:auto_mechanic_advisor/core/models/user.dart';
+import 'package:auto_mechanic_advisor/feature/home/data/models/user.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   String? username;
   String? userimage;
-
   User? userData;
 
   Future<void> getUserData() async {
