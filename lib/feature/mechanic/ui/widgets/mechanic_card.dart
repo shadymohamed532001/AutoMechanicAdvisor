@@ -24,9 +24,9 @@ class MechanicCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 130.h,
+        height: 140.h,
         decoration: BoxDecoration(
-          color: ColorManager.whiteColor,
+          color: ColorManager.greyColor.withOpacity(0.155),
           borderRadius: BorderRadius.all(Radius.circular(
             20.r,
           )),
@@ -38,9 +38,9 @@ class MechanicCard extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(
                   right: 10.w,
-                  left: 5.w,
                   top: 5.h,
                   bottom: 5.w,
+                  left: 5.w,
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(19.r)),
@@ -57,7 +57,7 @@ class MechanicCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(right: 5, top: 10, bottom: 10),
+                padding: const EdgeInsets.only(right: 5, top: 10, bottom: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -68,10 +68,11 @@ class MechanicCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Expanded(
-                            flex: 2,
                             child: Text(
                               mechanicModel.name,
-                              style: AppStyle.font14blacksemibold,
+                              style: AppStyle.font14Whitesemibold.copyWith(
+                                fontFamily: 'Raleway',
+                              ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -80,6 +81,7 @@ class MechanicCard extends StatelessWidget {
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Text(
                         'Tanta Qism 2, Second Tanta Gharbia Governorate' * 2,
                         style: AppStyle.font14Greymedium,
@@ -92,7 +94,7 @@ class MechanicCard extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           mechanicModel.phoneNumber,
-                          style: AppStyle.font14blacksemibold,
+                          style: AppStyle.font14Whitesemibold,
                         ),
                         const SizedBox(width: 7),
                         IconButton(
@@ -118,6 +120,9 @@ class MechanicCard extends StatelessWidget {
                             width: 25.w,
                             height: 25.h,
                           ),
+                        ),
+                        SizedBox(
+                          width: 5.w,
                         )
                       ],
                     ),
