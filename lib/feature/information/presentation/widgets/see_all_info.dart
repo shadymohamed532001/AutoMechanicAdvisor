@@ -17,9 +17,9 @@ class SeeAllItems extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.only(
-        right: 20.w,
-        left: 20.w,
-        top: 27.h,
+        right: 15.w,
+        left: 15.w,
+        top: 15.h,
         bottom: 10.h,
       ),
       shrinkWrap: true,
@@ -33,8 +33,8 @@ class SeeAllItems extends StatelessWidget {
           child: const animations.FadeInAnimation(child: PopularCard()),
         ),
       ),
-      separatorBuilder: (context, index) => Divider(
-        height: 35.h,
+      separatorBuilder: (context, index) => Container(
+        height: 20.h,
       ),
       itemCount: 20,
     );

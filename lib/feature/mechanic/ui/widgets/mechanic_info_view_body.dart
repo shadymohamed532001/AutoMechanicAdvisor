@@ -66,7 +66,19 @@ class _MechanicInfoViewBodyState extends State<MechanicInfoViewBody> {
             ),
           );
         } else if (state is GetMechanicDataError) {
-          return FadeInDown(child: Container());
+          return Scaffold(
+            body: FadeInDown(
+              child: const Column(
+                children: [
+                  Center(
+                    child: Text(
+                      'No Mechanic Found in Database',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         } else {
           cubit.getMechanic();
           return const Center(

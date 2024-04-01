@@ -27,7 +27,9 @@ class MechanicCard extends StatelessWidget {
         height: 130.h,
         decoration: BoxDecoration(
           color: ColorManager.whiteColor,
-          borderRadius: BorderRadius.all(Radius.circular(20.r)),
+          borderRadius: BorderRadius.all(Radius.circular(
+            20.r,
+          )),
         ),
         child: Row(
           children: <Widget>[
@@ -96,10 +98,13 @@ class MechanicCard extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             BlocProvider.of<MechanicCubit>(context).launchphone(
-                                phoneNumber: mechanicModel.phoneNumber,
-                                context: context);
+                              phoneNumber: mechanicModel.phoneNumber,
+                              context: context,
+                            );
                           },
-                          icon: const Icon(Icons.call),
+                          icon: const Icon(
+                            Icons.call,
+                          ),
                         ),
                         GestureDetector(
                           onTap: () {
