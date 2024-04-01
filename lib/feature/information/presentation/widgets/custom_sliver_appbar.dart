@@ -31,17 +31,19 @@ class CustomSliverAppBar extends StatelessWidget {
             },
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
-      backgroundColor: ColorManager.whiteColor.withOpacity(0.3),
+      backgroundColor: ColorManager.blackColor,
       elevation: 0.0,
       actions: actions,
       centerTitle: centerTitle,
       title: titleText != null
           ? Text(
               titleText!,
-              style: AppStyle.font14blackmedium,
+              style: AppStyle.font14Whitesemibold.copyWith(
+                fontFamily: 'Raleway',
+              ),
             )
           : title,
     );

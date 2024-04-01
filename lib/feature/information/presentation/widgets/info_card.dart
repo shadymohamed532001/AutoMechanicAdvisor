@@ -1,3 +1,5 @@
+import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
+import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -12,15 +14,15 @@ class PopularCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => context.navigateTo(
-      //   routeName: Routes.plantDetailsViewRoute,
-      //   arguments: PlantModelClass(plantModle: plant),
-      // ),
+      onTap: () => context.navigateTo(
+        routeName: Routes.informationDetailsViewsRoute,
+        // arguments: PlantModelClass(plantModle: plant),
+      ),
       child: Container(
-        width: 250.w,
-        height: 100.h,
+        width: 280.w,
+        height: 130.h,
         decoration: BoxDecoration(
-          color: ColorManager.whiteColor,
+          color: ColorManager.greyColor.withOpacity(0.188),
           borderRadius: BorderRadius.circular(24),
         ),
         child: Row(
@@ -49,14 +51,14 @@ class PopularCard extends StatelessWidget {
                     Text(
                       'plant.name',
                       overflow: TextOverflow.ellipsis,
-                      style: AppStyle.font14blacksemibold,
+                      style: AppStyle.font14Whitesemibold,
                     ),
                     SizedBox(
-                      height: 8.h,
+                      height: 1.h,
                     ),
                     Expanded(
                       child: Text(
-                        'plant.shortDescriptio ',
+                        'plant.shortDescriptio' * 20,
                         style: AppStyle.font12Greymedium,
                         maxLines: 3,
                       ),
