@@ -25,6 +25,7 @@ class _MechanicInfoViewBodyState extends State<MechanicInfoViewBody> {
   Widget build(BuildContext context) {
     return BlocBuilder<MechanicCubit, MechanicState>(
       builder: (context, state) {
+        var cubit = BlocProvider.of<MechanicCubit>(context);
         if (state is GetMechanicDataLoading) {
           return const Center(
             child: CircularProgressIndicator(
@@ -38,7 +39,7 @@ class _MechanicInfoViewBodyState extends State<MechanicInfoViewBody> {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 const CustomSliverAppBar(
-                  titleText: 'Favorite',
+                  titleText: 'Mechanic Information',
                 ),
                 SliverPadding(
                   padding: EdgeInsets.only(
@@ -67,6 +68,7 @@ class _MechanicInfoViewBodyState extends State<MechanicInfoViewBody> {
         } else if (state is GetMechanicDataError) {
           return FadeInDown(child: Container());
         } else {
+          cubit.getMechanic();
           return const Center(
             child: CircularProgressIndicator(
               color: ColorManager.redColor,
