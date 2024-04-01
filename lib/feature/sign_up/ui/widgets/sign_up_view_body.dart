@@ -170,7 +170,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       password: context.read<SignUpCubit>().passwordController.text,
       city: context.read<SignUpCubit>().addressController.text,
       fullName: context.read<SignUpCubit>().nameController.text,
-      phoneNumber: context.read<SignUpCubit>().passwordController.text,
+      phoneNumber: context.read<SignUpCubit>().phoneController.text,
     );
   }
 
@@ -180,7 +180,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       password: context.read<SignUpCubit>().passwordController.text,
       address: context.read<SignUpCubit>().addressController.text,
       fullName: context.read<SignUpCubit>().nameController.text,
-      phoneNumber: context.read<SignUpCubit>().passwordController.text,
+      phoneNumber: context.read<SignUpCubit>().phoneController.text,
     );
   }
 
