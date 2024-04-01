@@ -1,4 +1,8 @@
+import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
 import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
+import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
+import 'package:auto_mechanic_advisor/core/routing/routes.dart';
+import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -27,23 +31,71 @@ class HomeAppBarContent extends StatelessWidget {
                     NetworkImage('$baseUrl${homeCubit.userData!.data!.image}'),
               ),
               SizedBox(width: 10.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hi, $fullName',
-                    style: AppStyle.font16Whitesemibold.copyWith(
-                      fontFamily: 'Raleway',
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hi, $fullName',
+                      style: AppStyle.font16Whitesemibold.copyWith(
+                        fontFamily: 'Raleway',
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Welcome to Auto Mechanic advisor',
-                    style: AppStyle.font14Whitesemibold.copyWith(
-                      fontFamily: 'Raleway',
+                    Text(
+                      'Welcome to Auto Mechanic advisor',
+                      style: AppStyle.font14Whitesemibold.copyWith(
+                        fontFamily: 'Raleway',
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              Padding(
+                padding: EdgeInsets.only(top: 18.h, left: 6.w),
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      barrierColor: Colors.transparent,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.black,
+                          title: const Text('Confirmation'),
+                          content:
+                              const Text('Are you sure you want to log out?'),
+                          actions: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    LocalServices.removeData(key: 'token');
+                                    context.navigateAndRemoveUntil(
+                                      newRoute: Routes.loginViewsRoute,
+                                    );
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            )
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/log_out.png',
+                    width: 22.w,
+                    height: 25.h,
+                  ),
+                ),
+              )
             ],
           ),
         ),
