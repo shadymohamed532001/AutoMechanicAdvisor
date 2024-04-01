@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InformationDetailsBody extends StatelessWidget {
-  const InformationDetailsBody({Key? key}) : super(key: key);
+  const InformationDetailsBody({super.key});
 
   @override
   Widget build(BuildContext context) {

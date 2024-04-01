@@ -1,3 +1,4 @@
+import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/feature/gpt/data/models/chat_model.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -19,7 +20,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.whiteColor,
+      backgroundColor: ColorManager.blackColor,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("AUTO MECHANIC AI"),
@@ -32,8 +33,18 @@ class _ChatViewState extends State<ChatView> {
         messageOptions: const MessageOptions(
           currentUserTextColor: ColorManager.whiteColor,
         ),
-        inputOptions: const InputOptions(
-          inputTextStyle: TextStyle(color: ColorManager.blackColor),
+        inputOptions: InputOptions(
+          inputTextStyle: const TextStyle(
+            color: ColorManager.blackColor,
+          ),
+          sendButtonBuilder: (send) {
+            return IconButton(
+              onPressed: send,
+              icon: const Icon(
+                Icons.send,
+              ),
+            );
+          },
         ),
       ),
     );
@@ -77,7 +88,6 @@ class _ChatViewState extends State<ChatView> {
       var dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';
 
-      // Extract text from messagesHistory
       List<String> texts = [];
       for (var message in messagesHistory) {
         if (message['content'] != null) {
@@ -86,9 +96,8 @@ class _ChatViewState extends State<ChatView> {
       }
       String concatenatedText = texts.join(' ');
 
-      // Make request with concatenated text
       var response = await dio.post(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyDWw6-GqfdYeCjr1EudWYOw2rzyBUPL5zY',
+        '$geminiBASEURL/models/gemini-pro:generateContent?key=$apiKey',
         data: {
           'contents': [
             {
