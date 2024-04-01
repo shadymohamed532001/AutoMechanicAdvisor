@@ -1,10 +1,13 @@
 import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
 import 'package:auto_mechanic_advisor/feature/gpt/presenation/views/chat_screen.dart';
+import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 
 import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
 import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_view.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/login/ui/views/login_view.dart';
+import 'package:auto_mechanic_advisor/feature/mechanic/logic/cubit/mechanic_cubit.dart';
+import 'package:auto_mechanic_advisor/feature/mechanic/ui/views/mechanic_info_view.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/logic/onbording_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/onbording/ui/views/on_boarding_view.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
@@ -60,7 +63,10 @@ class AppRoutes {
 
       case Routes.homeViewsRoute:
         return MaterialPageRoute(
-          builder: ((context) => const HomeView()),
+          builder: ((context) => BlocProvider(
+                create: (context) => HomeCubit()..getUserData(),
+                child: const HomeView(),
+              )),
         );
 
       case Routes.informationViewsRoute:
@@ -70,6 +76,13 @@ class AppRoutes {
       case Routes.chatViewsRoute:
         return MaterialPageRoute(
           builder: ((context) => const ChatView()),
+        );
+      case Routes.mechanicInfoViewsRoute:
+        return MaterialPageRoute(
+          builder: ((context) => BlocProvider(
+                create: (context) => MechanicCubit(),
+                child: const MechanicInfoView(),
+              )),
         );
 
       default:

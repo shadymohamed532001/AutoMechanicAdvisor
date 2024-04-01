@@ -7,4 +7,5 @@ class ImagesAssetsManager {
   static const String carInfoImage = '$imagePath/car_info.png';
   static const String mechanicImage = '$imagePath/mechanic.jpg';
   static const String gptImage = '$imagePath/gpt.jpeg';
+  static const String whatsapp = '$imagePath/whatsapp.png';
 }
