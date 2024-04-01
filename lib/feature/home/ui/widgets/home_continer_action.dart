@@ -1,9 +1,12 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_image_assets.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
+import 'package:auto_mechanic_advisor/feature/mechanic/logic/cubit/mechanic_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeContinerAction extends StatelessWidget {
@@ -46,151 +49,170 @@ class HomeContinerAction extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 8.h,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    context.navigateTo(routeName: Routes.informationViewsRoute);
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: const Color(0xFF909996),
-                    ),
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Image.asset(
-                            ImagesAssetsManager.carInfoImage,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+              child: FadeInRight(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 8.h,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.navigateTo(
+                          routeName: Routes.informationViewsRoute);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: const Color(0xFF909996),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(24),
+                            child: Image.asset(
+                              ImagesAssetsManager.carInfoImage,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8.h),
-                            child: Center(
-                              child: Text(
-                                'AUTO MECHANIC ADVISOR INFORMATION',
-                                style: AppStyle.font14blacksemibold.copyWith(
-                                  color: ColorManager.whiteColor,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeightHelper.bold,
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 8.h),
+                              child: Center(
+                                child: Text(
+                                  'AUTO MECHANIC ADVISOR INFORMATION',
+                                  style: AppStyle.font14blacksemibold.copyWith(
+                                    color: ColorManager.whiteColor,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeightHelper.bold,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 8.h,
-                ),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: const Color(0xFF909996),
-                    ),
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Image.asset(
-                            ImagesAssetsManager.mechanicImage,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
+              child: BlocProvider(
+                create: (context) => MechanicCubit(),
+                child: BlocBuilder<MechanicCubit, MechanicState>(
+                  builder: (context, state) {
+                    return FadeInLeft(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 8.h,
                         ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
+                        child: GestureDetector(
+                          onTap: () {
+                            context.navigateTo(
+                                routeName: Routes.mechanicInfoViewsRoute);
+                          },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8.h),
-                            child: Center(
-                              child: Text(
-                                'AUTO MECHANIC ADVISOR MECHANIC',
-                                style: AppStyle.font14blacksemibold.copyWith(
-                                  color: ColorManager.whiteColor,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeightHelper.bold,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              color: const Color(0xFF909996),
+                            ),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(24),
+                                  child: Image.asset(
+                                    ImagesAssetsManager.mechanicImage,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
+                                Positioned(
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.h),
+                                    child: Center(
+                                      child: Text(
+                                        'AUTO MECHANIC ADVISOR MECHANIC',
+                                        style: AppStyle.font14blacksemibold
+                                            .copyWith(
+                                          color: ColorManager.whiteColor,
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeightHelper.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 8.h,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    context.navigateTo(routeName: Routes.chatViewsRoute);
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: const Color(0xFF909996),
-                    ),
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Image.asset(
-                            ImagesAssetsManager.gptImage,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+              child: FadeInRight(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 8.h,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.navigateTo(routeName: Routes.chatViewsRoute);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: const Color(0xFF909996),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(24),
+                            child: Image.asset(
+                              ImagesAssetsManager.gptImage,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8.h),
-                            child: Center(
-                              child: Text(
-                                'AUTO MECHANIC ADVISOR CHAT BOT',
-                                style: AppStyle.font14blacksemibold.copyWith(
-                                  color: ColorManager.whiteColor,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeightHelper.bold,
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 8.h),
+                              child: Center(
+                                child: Text(
+                                  'AUTO MECHANIC ADVISOR CHAT BOT',
+                                  style: AppStyle.font14blacksemibold.copyWith(
+                                    color: ColorManager.whiteColor,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeightHelper.bold,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

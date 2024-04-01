@@ -10,49 +10,44 @@ class HomeAppBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        final homeCubit = BlocProvider.of<HomeCubit>(context);
-        final userData = homeCubit.userData;
-
-        final fullName = userData?.data!.fullName;
-        return Column(
-          children: [
-            SizedBox(height: 15.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
-              child: Row(
+    final homeCubit = BlocProvider.of<HomeCubit>(context);
+    final userData = homeCubit.userData;
+    final fullName = userData?.data!.fullName;
+    return Column(
+      children: [
+        SizedBox(height: 15.h),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 28,
+                backgroundColor: Colors.transparent,
+                backgroundImage:
+                    NetworkImage('$baseUrl${homeCubit.userData!.data!.image}'),
+              ),
+              SizedBox(width: 10.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: NetworkImage(
-                        '$baseUrl${homeCubit.userData!.data!.image}'),
+                  Text(
+                    'Hi, $fullName',
+                    style: AppStyle.font16Whitesemibold.copyWith(
+                      fontFamily: 'Raleway',
+                    ),
                   ),
-                  SizedBox(width: 10.w),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hi, $fullName',
-                        style: AppStyle.font16Whitesemibold.copyWith(
-                          fontFamily: 'Raleway',
-                        ),
-                      ),
-                      Text(
-                        'Welcome to Auto Mechanic advisor',
-                        style: AppStyle.font14Whitesemibold.copyWith(
-                          fontFamily: 'Raleway',
-                        ),
-                      ),
-                    ],
+                  Text(
+                    'Welcome to Auto Mechanic advisor',
+                    style: AppStyle.font14Whitesemibold.copyWith(
+                      fontFamily: 'Raleway',
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
-        );
-      },
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

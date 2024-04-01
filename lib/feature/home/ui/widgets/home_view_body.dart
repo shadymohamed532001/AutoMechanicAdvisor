@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:auto_mechanic_advisor/core/widgets/primary_header_continer.dart';
 import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/home/ui/widgets/home_appbar_content.dart';
@@ -24,9 +26,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is GetUserDataLoading) {
-          return const CircularProgressIndicator(); // Show loading indicator
+          return const Center(
+            child: const CircularProgressIndicator(),
+          );
         } else if (state is GetUserDataSuccess) {
-          // Use state.userData to build your UI
           return Column(
             children: [
               PrimaryHeaderContiner(
@@ -35,13 +38,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   child: HomeAppBarContent(),
                 ),
               ),
-              const HomeContinerAction()
+              const HomeContinerAction(),
             ],
           );
         } else if (state is GetUserDataError) {
-          return Text(state.error); // Show error message
+          return Center(
+            child: Text('Error: ${state.error}'),
+          );
         } else {
-          return const Text('Unknown state'); // Handle unexpected state
+          return Container();
         }
       },
     );
