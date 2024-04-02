@@ -1,16 +1,17 @@
+import 'package:auto_mechanic_advisor/feature/information/data/models/information_model.dart';
 import 'package:auto_mechanic_advisor/feature/information/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
     as animations;
 
-//
 class SeeAllItems extends StatelessWidget {
   const SeeAllItems({
     super.key,
+    required this.information,
   });
 
-  // final List<PlantModle> plants;
+  final List<InformationModel> information;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +31,17 @@ class SeeAllItems extends StatelessWidget {
         child: animations.SlideAnimation(
           horizontalOffset: -150.w,
           curve: Curves.fastLinearToSlowEaseIn,
-          child: const animations.FadeInAnimation(child: PopularCard()),
+          child: animations.FadeInAnimation(
+            child: PopularCard(
+              informationModel: information[index],
+            ),
+          ),
         ),
       ),
       separatorBuilder: (context, index) => Container(
         height: 20.h,
       ),
-      itemCount: 20,
+      itemCount: information.length,
     );
   }
 }

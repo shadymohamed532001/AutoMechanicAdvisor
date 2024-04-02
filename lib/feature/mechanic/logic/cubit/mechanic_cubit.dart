@@ -27,11 +27,12 @@ class MechanicCubit extends Cubit<MechanicState> {
         token: token,
       );
       if (response.containsKey('data')) {
-        List<MechanicModel> mechanicInfoResult = [];
+        List<MechanicModel> mechanicInfo = [];
         for (var mechanicData in response['data']) {
-          mechanicInfoResult.add(MechanicModel.fromJson(mechanicData));
+          mechanicInfo.add(MechanicModel.fromJson(mechanicData));
         }
-        emit(GetMechanicDataSuccess(mechanicInfo: mechanicInfoResult));
+        mechanicInfoResult = mechanicInfo;
+        emit(GetMechanicDataSuccess(mechanicInfo: mechanicInfoResult!));
       } else {
         emit(const GetMechanicDataError(error: 'No Mechanic Found'));
       }

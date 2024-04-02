@@ -1,9 +1,13 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
+import 'package:auto_mechanic_advisor/feature/information/data/models/information_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InformationDetailsBody extends StatelessWidget {
-  const InformationDetailsBody({super.key});
+  const InformationDetailsBody({super.key, required this.informationModel});
+  final InformationModel informationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +29,10 @@ class InformationDetailsBody extends StatelessWidget {
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24),
                   ),
-                  child: Image.asset(
-                    'assets/images/car_info_details.png',
-                    fit: BoxFit.contain,
+                  child: CachedNetworkImage(
+                    imageUrl: '$baseUrl${informationModel.image}',
+                    height: 130.h,
+                    width: 100.w,
                   ),
                 ),
               ),
@@ -72,7 +77,7 @@ class InformationDetailsBody extends StatelessWidget {
                 children: [
                   SizedBox(height: 8.h),
                   Text(
-                    'High temperature',
+                    informationModel.title,
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
@@ -82,7 +87,7 @@ class InformationDetailsBody extends StatelessWidget {
                   SizedBox(height: 8.h),
                   SingleChildScrollView(
                     child: Text(
-                      'Even fuel can leak from your car if the fuel system components are not taken care of. Fuel lines become brittle after time and may crack, while the fittings can also fatigue and damage themselves, although this is less common. The high pressure fuel pump housing can also separate depending on the vehicle you have, but again, this is a rare problem. In unusual cases, the fuel tank may be scratched or damaged by rocks or other road debris, causing a leak here as well. While one can temporarily repair the fuel line with strong solder tape, the pressure of the system will make this a short-term fix, and it is best to simply replace the damaged line. It will also require replacing the faulty pump or tank. It\'s also a good idea to check that you don\'t have an injector stuck open, as it could start your car\'s engine to run incorrectly.',
+                      informationModel.description,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.normal,

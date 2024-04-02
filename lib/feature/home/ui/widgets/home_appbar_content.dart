@@ -2,7 +2,6 @@ import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
 import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
 import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
-import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
 import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';

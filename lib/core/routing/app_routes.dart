@@ -3,6 +3,7 @@ import 'package:auto_mechanic_advisor/feature/gpt/presenation/views/chat_screen.
 import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 
 import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
+import 'package:auto_mechanic_advisor/feature/information/logic/information_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_details_view.dart';
 import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_view.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
@@ -72,12 +73,12 @@ class AppRoutes {
 
       case Routes.informationViewsRoute:
         return MaterialPageRoute(
-          builder: ((context) => const InformationView()),
+          builder: ((context) => BlocProvider(
+                create: (context) => InformationCubit()..getInformationData(),
+                child: const InformationView(),
+              )),
         );
-      case Routes.informationDetailsViewsRoute:
-        return MaterialPageRoute(
-          builder: ((context) => const InformationDetails()),
-        );
+
       case Routes.chatViewsRoute:
         return MaterialPageRoute(
           builder: ((context) => const ChatView()),

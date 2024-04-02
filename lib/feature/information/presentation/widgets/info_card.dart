@@ -1,7 +1,11 @@
 import 'package:auto_mechanic_advisor/core/helper/naviagtion_extentaions.dart';
+import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
 import 'package:auto_mechanic_advisor/core/routing/routes.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_styles.dart';
+import 'package:auto_mechanic_advisor/feature/information/data/models/information_model.dart';
+import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_details_view.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,14 +13,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PopularCard extends StatelessWidget {
   const PopularCard({
     super.key,
+    required this.informationModel,
   });
+
+  final InformationModel informationModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.navigateTo(
-        routeName: Routes.informationDetailsViewsRoute,
-        // arguments: PlantModelClass(plantModle: plant),
-      ),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return InformationDetails(
+            informationModel: informationModel,
+          );
+        }));
+      },
       child: Container(
         width: 280.w,
         height: 130.h,
@@ -32,19 +42,11 @@ class PopularCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(24),
-                  child: Image.asset(
-                    'assets/images/car_info_details.png',
+                  child: CachedNetworkImage(
+                    imageUrl: '$baseUrl${informationModel.image}',
                     height: 130.h,
                     width: 100.w,
-                    fit: BoxFit.contain,
                   ),
-
-                  // TODO: add image
-                  // child: CachedNetworkImage(
-                  //   imageUrl: 'https://picsum.photos/250?image=9',
-                  //   height: 130.h,
-                  //   width: 100.w,
-                  // ),
                 ),
               ),
             ),
@@ -56,7 +58,7 @@ class PopularCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Fuel leaks',
+                      informationModel.title,
                       overflow: TextOverflow.ellipsis,
                       style: AppStyle.font14Whitesemibold,
                     ),
@@ -65,7 +67,7 @@ class PopularCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'Even fuel can leak from your car if the fuel system components are not taken care of. Fuel lines become rittle after time and may crack, while the fittings can also fatigue and damage themselves, although this is less common.The high pressure fuel pump housing can also separate depending on the vehicle you have, but again, this is a rare problem. In unusual cases, the fuel tank may be scratched or damaged by rocks',
+                        informationModel.description,
                         style: AppStyle.font12Greymedium,
                         maxLines: 3,
                       ),
