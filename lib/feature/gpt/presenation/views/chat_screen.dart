@@ -1,4 +1,5 @@
-import 'package:auto_mechanic_advisor/core/helper/helper_const.dart';
+import 'package:auto_mechanic_advisor/core/networking/end_boint.dart';
+import 'package:auto_mechanic_advisor/core/networking/local_services.dart';
 import 'package:auto_mechanic_advisor/core/utils/app_colors.dart';
 import 'package:auto_mechanic_advisor/feature/gpt/data/models/chat_model.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -87,31 +88,24 @@ class _ChatViewState extends State<ChatView> {
     try {
       var dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';
-
-      List<String> texts = [];
-      for (var message in messagesHistory) {
-        if (message['content'] != null) {
-          texts.add(message['content']);
-        }
-      }
+      String token = LocalServices.getData(key: 'token');
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      List<String> texts = messagesHistory
+          .map<String>((message) => message['content'].toString())
+          .toList();
       String concatenatedText = texts.join(' ');
 
       var response = await dio.post(
-        '$geminiBASEURL/models/gemini-pro:generateContent?key=$apiKey',
-        data: {
-          'contents': [
-            {
-              'parts': [
-                {
-                  'text': concatenatedText,
-                }
-              ]
-            }
-          ]
-        },
+        '$baseUrl$chatendpoint', // Your API endpoint
+        data: {'message': concatenatedText},
       );
-      ApiResponse response_2 = ApiResponse.fromJson(response.data);
-      return response_2.candidates[0].content.parts[0].text;
+
+      if (response.statusCode == 200) {
+        ChatbotResponse response_2 = ChatbotResponse.fromJson(response.data);
+        return response_2.data;
+      } else {
+        return null;
+      }
     } catch (e) {
       return null;
     }

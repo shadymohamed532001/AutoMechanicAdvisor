@@ -32,7 +32,7 @@ class ChatRepoImpl implements ChatRepo {
         ]
       },
     );
-    ApiResponse response_2 = ApiResponse.fromJson(response.data);
-    return response_2.candidates[0].content.parts[0].text;
+    ChatbotResponse response_2 = ChatbotResponse.fromJson(response.data);
+    return response_2.data;
   }
 }

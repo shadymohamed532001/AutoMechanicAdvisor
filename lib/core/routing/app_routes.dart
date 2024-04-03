@@ -4,7 +4,6 @@ import 'package:auto_mechanic_advisor/feature/home/logic/cubit/home_cubit.dart';
 
 import 'package:auto_mechanic_advisor/feature/home/ui/views/home_view.dart';
 import 'package:auto_mechanic_advisor/feature/information/logic/information_cubit.dart';
-import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_details_view.dart';
 import 'package:auto_mechanic_advisor/feature/information/presentation/views/information_view.dart';
 import 'package:auto_mechanic_advisor/feature/login/logic/login_cubit.dart';
 import 'package:auto_mechanic_advisor/feature/login/ui/views/login_view.dart';

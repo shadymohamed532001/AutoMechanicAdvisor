@@ -37,8 +37,6 @@ class InformationCubit extends Cubit<InformationState> {
           error: ServerFailure.fromDioException(e).errMessage,
         ));
       } else {
-        print(e.toString());
-
         emit(GetInformationDataError(
             error: ServerFailure(e.toString()).errMessage));
       }
