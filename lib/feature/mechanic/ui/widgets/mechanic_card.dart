@@ -83,7 +83,7 @@ class MechanicCard extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: Text(
-                        'Tanta Qism 2, Second Tanta Gharbia Governorate' * 2,
+                        mechanicModel.address,
                         style: AppStyle.font14Greymedium,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,

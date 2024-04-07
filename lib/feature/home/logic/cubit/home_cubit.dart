@@ -13,32 +13,19 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
-  String? username;
-  String? userimage;
   User? userData;
 
   Future<void> getUserData() async {
     emit(GetUserDataLoading());
     try {
-      // Check if full name exists in shared preferences
-      username = await LocalServices.getData(key: 'name');
-      userimage = await LocalServices.getData(key: 'image');
-
-      if (username != null && userimage != null) {
-        userData = User(data: Data(fullName: username, image: userimage));
-        username = userData!.data!.fullName;
-        userimage = userData!.data!.image;
-        emit(GetUserDataSuccess(userData: userData!));
-      } else {
-        String token = await LocalServices.getData(key: 'token');
-        var response = await ApiServices.getData(
-          token: token,
-          endpoint: userendpoint,
-        );
-        userData = User.fromJson(response);
-        saveUserDataToLocalStorage(userData!);
-        emit(GetUserDataSuccess(userData: userData!));
-      }
+      String token = await LocalServices.getData(key: 'token');
+      var response = await ApiServices.getData(
+        token: token,
+        endpoint: userendpoint,
+      );
+      userData = User.fromJson(response);
+      saveUserDataToLocalStorage(userData!);
+      emit(GetUserDataSuccess(userData: userData!));
     } catch (e) {
       if (e is DioException) {
         log(e.error.toString());

@@ -93,11 +93,13 @@ class _ChatViewState extends State<ChatView> {
       List<String> texts = messagesHistory
           .map<String>((message) => message['content'].toString())
           .toList();
-      String concatenatedText = texts.join(' ');
+      String concatenatedText = texts.join('');
 
       var response = await dio.post(
         '$baseUrl$chatendpoint', // Your API endpoint
-        data: {'message': concatenatedText},
+        data: {
+          'message': concatenatedText,
+        },
       );
 
       if (response.statusCode == 200) {
