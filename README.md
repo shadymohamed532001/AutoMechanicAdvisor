@@ -36,22 +36,10 @@ Auto Mechanic Advisor sounds like a useful tool for anyone needing car-related a
     │   │  
     │   ├── bloc_observer.dart.dart
     └── └── main.dart
-
     
 ## Preview
 
-## Download
-
-## Usage
-
-Once the Auto Mechanic Advisor app is installed and launched, follow these steps to utilize its features:
-
-1. Sign up or log in to your Agri-tech360 account.
-2. Upload a plant leaf image to Agri-tech360's PlantClassification feature to instantly diagnose diseases and receive treatment recommendations.
-3. Upload an image of the soil and previous crop to Agri-tech360's RecommendNextCrop feature for instant recommendations on the next best crop to plant.
-4. View detailed information about each plant, including images, descriptions, ratings, and Care instructions.
-5. View detailed information about each product, including images, descriptions, ratings, Price, and seller.
-
+ <img src="https://github.com/shadymohamed532001/AutoMechanicAdvisor/assets/126605393/ade4452a-fa83-4012-9584-a079c8930110"> 
 
 ## Features
 
